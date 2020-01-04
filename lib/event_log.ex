@@ -1,6 +1,16 @@
 defmodule EventLog do
   @moduledoc """
   Can host multiple streams. Stream has a log and index.
+
+  * Entries are being appended to log. There is no deletion operation.
+  *  Entry contains the actual data, timestamp, crc and some meta data.
+  * Log is partitioned to segments that are named by it's least offset.
+  * Each segment has a coresponding index file which contains offset's position in segment.
+  * Log scales by splitting to more segments and has constant memory footprint.
+  * Stream is a log + index.
+  * There are no NIFs and other dependencies (pure Elixir).
+  * Goal: get to max. write throughput given Elixir/Erlang capablities
+
   """
   use GenServer
   require Logger

@@ -1,6 +1,6 @@
 defmodule EventLog.IndexWriter do
   @moduledoc """
-  Writes indices of a given log.
+  Writes offset index of a given log.
 
   Every log segment (.seg file) has a coresponding index file (.idx).
 
@@ -21,11 +21,16 @@ defmodule EventLog.IndexWriter do
     {:ok, %{idx: %{}}}
   end
 
+  @doc """
+  Appends index entry. Index entry: {segment_file, position}
+  """
   def append(pid, seg_path, pos) when is_pid(pid) do
     GenServer.cast(pid, {:append, seg_path, pos})
-    # FIXME: map not needed
   end
 
+  @doc """
+  Closes index writer
+  """
   def close(pid) when is_pid(pid) do
     GenServer.call(pid, :close)
   end

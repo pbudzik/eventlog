@@ -1,8 +1,6 @@
 defmodule EventLog.Reader do
   @moduledoc """
-  Reads indices of a log.
-  Every log segment (.seg file) has a coresponding index file (.idx).
-  Index entry: {segment_file, position}
+  Reads entries of a log. 
   """
   use GenServer
   require Logger

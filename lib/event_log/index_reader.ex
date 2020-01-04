@@ -1,6 +1,6 @@
 defmodule EventLog.IndexReader do
   @moduledoc """
-  Reads indices of a log.
+  Reads offset index of a log.
   Every log segment (.seg file) has a coresponding index file (.idx).
   Index entry: {segment_file, position}
   """

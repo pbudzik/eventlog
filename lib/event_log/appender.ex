@@ -1,6 +1,6 @@
 defmodule EventLog.Appender do
   @moduledoc """
-  Appends data entries to a log.
+  Appends data entries to a log and have them indexed by offset.
   """
   use GenServer
   require Logger
@@ -39,14 +39,23 @@ defmodule EventLog.Appender do
      }}
   end
 
+  @doc """
+  Appends log entry data.
+  """
   def append(pid, data) when is_pid(pid) do
     GenServer.call(pid, {:append, data})
   end
 
+  @doc """
+  Syncs data from buffers to disk.
+  """
   def fsync(pid) when is_pid(pid) do
     GenServer.call(pid, :fsync)
   end
 
+  @doc """
+  Closes log appender.
+  """
   def close(pid) when is_pid(pid) do
     GenServer.call(pid, :close)
   end
