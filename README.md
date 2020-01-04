@@ -64,7 +64,7 @@ end
 Run on my MacBook Pro:
 
 ```mix run benchmark/append.exs         
-                                                                  master!
+                                                                  
 10000 messages of 128b size => elapsed: 1221 ms, mps: 8190 msg/s, throughput: 1.0483210483210483 MB/s
 10000 messages of 512b size => elapsed: 1187 ms, mps: 8425 msg/s, throughput: 4.313395113732097 MB/s
 10000 messages of 1024b size => elapsed: 1310 ms, mps: 7634 msg/s, throughput: 7.816793893129772 MB/s
