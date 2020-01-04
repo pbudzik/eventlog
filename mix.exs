@@ -11,6 +11,22 @@ defmodule MessageLog.MixProject do
     ]
   end
 
+  defp description do
+    """
+    Append log with indexing.
+    """
+  end
+
+  defp package do
+    [
+     files: ["lib", "mix.exs", "README.md"],
+     maintainers: ["PB"],
+     licenses: ["Apache 2.0"],
+     links: %{"GitHub" => "https://github.com/pbudzik/eventlog",
+              "Docs" => "http://hexdocs.pm/eventlog/"}
+     ]
+  end
+
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
