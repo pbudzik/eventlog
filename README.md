@@ -7,9 +7,9 @@
 EventLog is an indexed append only log written in Elixir. It stores data in log segments and each segment is indexed.
 Entries of the log can be read sequentially either from begining or a given offset. 
 
-## What is it?
+## What is it for?
 
-It's a building block component. Could help in EventSourcing/EventStore implementation.
+It's a building block component. Could help in EventSourcing/EventStore or distributed log implementation. 
 
 ## Key concepts
 
