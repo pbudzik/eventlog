@@ -14,7 +14,7 @@ defmodule EventLog.Benchmark do
     range = 1..n
     volume = size * n
 
-    for i <- range do
+    for _ <- range do
       EventLog.append(log, stream, message)
     end
 
