@@ -20,6 +20,7 @@ It's a building block component. Could help in EventSourcing/EventStore or distr
 * Log scales by splitting to more segments and has constant memory footprint.
 * Stream is a log + index. 
 * There are no NIFs and other dependencies (pure Elixir).
+* Goal: get to max. write throughput given Elixir/Erlang capablities
 
 ## Quickstart
 
