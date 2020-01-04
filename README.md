@@ -44,9 +44,9 @@ end
   ``` 
     {:ok, log} = EventLog.start_link(dir)
     {:ok, _} = EventLog.create_stream(log, "my_stream")
-    EventLog.append(log, stream, "foo0")
-    EventLog.append(log, stream, "foo1")
-    EventLog.append(log, stream, "foo2")
+    EventLog.append(log, "my_stream", "foo0")
+    EventLog.append(log, "my_stream", "foo1")
+    EventLog.append(log, "my_stream", "foo2")
     # read from beginning
     {:ok, reader} = EventLog.get_reader(log, "my_stream")
     {:ok, {0, "foo0", _, _, _}} = Reader.get_next(reader)
