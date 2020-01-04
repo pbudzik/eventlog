@@ -7,24 +7,10 @@ defmodule MessageLog.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: "Append log with indexing.",
+      package: package()
     ]
-  end
-
-  defp description do
-    """
-    Append log with indexing.
-    """
-  end
-
-  defp package do
-    [
-     files: ["lib", "mix.exs", "README.md"],
-     maintainers: ["PB"],
-     licenses: ["Apache 2.0"],
-     links: %{"GitHub" => "https://github.com/pbudzik/eventlog",
-              "Docs" => "http://hexdocs.pm/eventlog/"}
-     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
@@ -39,5 +25,16 @@ defmodule MessageLog.MixProject do
     [
       {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
+  end
+
+  defp package do
+    %{
+      files: ["lib", "mix.exs", "mix.lock", "README.md"],
+      licenses: ["Apache 2.0"],
+      links: %{
+        "GitHub" => "https://github.com/pbudzik/eventlog",
+        "Docs" => "http://hexdocs.pm/eventlog/"
+      }
+    }
   end
 end
