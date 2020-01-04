@@ -4,7 +4,7 @@ defmodule EventLog.Appender do
   """
   use GenServer
   require Logger
-  alias EventLog.{Utils, Commons, Segment, IndexWriter, IndexReader}
+  alias EventLog.{Segment, IndexWriter, IndexReader}
 
   @write_mode [:append, :binary, :delayed_write]
   @max_seg_size 1024 * 1024 * 1024
