@@ -42,7 +42,7 @@ end
 
 ## Usage
 
-  ``` 
+  ```elixir 
     {:ok, log} = EventLog.start_link(dir)
     {:ok, _} = EventLog.create_stream(log, "my_stream")
     EventLog.append(log, "my_stream", "foo0")
