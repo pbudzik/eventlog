@@ -23,8 +23,6 @@ defmodule LogTest do
     IO.inspect(File.ls!(dir))
     assert Segment.segments(dir) |> Enum.count() == 1
     file = Segment.segments(dir) |> List.first()
-    stat = File.stat!("#{dir}/#{file}")
-    assert stat.size == 17 * 3 + (4 + 1 + 1)
     {:ok, reader} = Reader.start_link(dir)
     {:ok, {off1, v1, ts1, _, _}} = Reader.get_next(reader)
     assert off1 == 0
@@ -107,5 +105,21 @@ defmodule LogTest do
     {:ok, {2, "2", _, _, _}} = Reader.get_next(reader)
     Reader.close(reader)
     File.rm_rf!(dir)
+  end
+
+  test "Different values" do
+    dir = test_dir()
+    {:ok, appender} = Appender.start_link(dir)
+    {:ok, 0} = Appender.append(appender, 1)
+    {:ok, 1} = Appender.append(appender, 99_190_101)
+    {:ok, 2} = Appender.append(appender, %{})
+    {:ok, 3} = Appender.append(appender, {:x, :y, "z"})
+    Appender.close(appender)
+    {:ok, reader} = Reader.start_link(dir)
+    {:ok, {0, 1, _, _, _}} = Reader.get_next(reader)
+    {:ok, {1, 99_190_101, _, _, _}} = Reader.get_next(reader)
+    {:ok, {2, %{}, _, _, _}} = Reader.get_next(reader)
+    {:ok, {3, {:x, :y, "z"}, _, _, _}} = Reader.get_next(reader)
+    Reader.close(reader)
   end
 end

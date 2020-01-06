@@ -124,12 +124,13 @@ defmodule EventLog.Appender do
     # meta: 8
     timestamp = :os.system_time(:millisecond)
     timestamp_data = <<timestamp::big-unsigned-integer-size(64)>>
-    value_size = byte_size(value)
+    value_bin  = :erlang.term_to_binary(value)
+    value_size = byte_size(value_bin)
     value_size_data = <<value_size::big-unsigned-integer-size(32)>>
     meta_data = <<@meta::unsigned-integer-size(8)>>
-    crc_data = <<:erlang.crc32(value)::big-unsigned-integer-size(32)>>
+    crc_data = <<:erlang.crc32(value_bin)::big-unsigned-integer-size(32)>>
 
-    <<value_size_data::binary, value::binary, timestamp_data::binary, meta_data::binary,
+    <<value_size_data::binary, value_bin::binary, timestamp_data::binary, meta_data::binary,
       crc_data::binary>>
   end
 

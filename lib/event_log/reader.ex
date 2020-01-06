@@ -1,6 +1,6 @@
 defmodule EventLog.Reader do
   @moduledoc """
-  Reads entries of a log. 
+  Reads entries of a log.
   """
   use GenServer
   require Logger
@@ -142,8 +142,8 @@ defmodule EventLog.Reader do
       crc = IO.binread(fd, 4)
 
       entry =
-        {offset, data, :binary.decode_unsigned(ts), :binary.decode_unsigned(meta),
-         :binary.decode_unsigned(crc)}
+        {offset, :erlang.binary_to_term(data), :binary.decode_unsigned(ts),
+         :binary.decode_unsigned(meta), :binary.decode_unsigned(crc)}
 
       {:ok, {entry, fd, path, offset + 1}}
     end
